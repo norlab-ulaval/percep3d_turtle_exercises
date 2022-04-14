@@ -1,5 +1,6 @@
 <launch>
       <node pkg="turtlesim" type="turtlesim_node" name="sim"/>
+
       <node pkg="turtlesim" type="turtle_teleop_key" name="teleop" output="screen"/>
 
 
@@ -8,11 +9,12 @@
       <param name="turtle_frame_id" value="bob"/>
       <param name="world_frame_id" value="world"/>
     </node>
-    <node name="turtle2_tf2_broadcaster" pkg="percep3d_turtle_exercises" type="turtle_tf2_broadcaster.py" respawn="false" output="screen" >
+
+    <node name="turtle2_tf1_broadcaster" pkg="percep3d_turtle_exercises" type="turtle_tf2_broadcaster.py" respawn="false" output="screen" >
       <param name="turtle" type="string" value="turtle2" />
-      <param name="turtle_frame_id" value="turtle2"/>
-      <param name="world_frame_id" value="world"/> 
+      <param name="turtle_frame_id" value="bob"/>
+      <param name="world_frame_id" value="world"/>
     </node>
 
-  </launch>
+</launch>
 
