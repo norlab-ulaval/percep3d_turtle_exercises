@@ -1,20 +1,24 @@
 <launch>
       <node pkg="turtlesim" type="turtlesim_node" name="sim"/>
 
-      <node pkg="turtlesim" type="turtle_teleop_key" name="teleop" output="screen"/>
+      <node pkg="turtlesim" type="turtle_teleop_key" name="teleop" output="screen">
+      <remap from="/turtle1/cmd_vel" to="null"/>
+      </node>
 
 
     <node name="turtle1_tf2_broadcaster" pkg="percep3d_turtle_exercises" type="turtle_tf2_broadcaster.py" respawn="false" output="screen" >
       <param name="turtle" type="string" value="turtle1" />
       <param name="turtle_frame_id" value="bob"/>
-      <param name="world_frame_id" value="world"/>
+      <param name="world_frame_id" value="sea"/>
     </node>
 
     <node name="turtle2_tf1_broadcaster" pkg="percep3d_turtle_exercises" type="turtle_tf2_broadcaster.py" respawn="false" output="screen" >
       <param name="turtle" type="string" value="turtle2" />
-      <param name="turtle_frame_id" value="bob"/>
-      <param name="world_frame_id" value="world"/>
+      <param name="turtle_frame_id" value="steve"/>
+      <param name="world_frame_id" value="earth"/>
     </node>
+    <node name="turtle_pointer" pkg="turtle_tf2" type="turtle_tf2_listener.py" respawn="false" output="screen" >
+  </node>
 
 </launch>
 

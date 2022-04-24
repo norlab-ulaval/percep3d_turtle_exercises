@@ -14,10 +14,11 @@ def handle_turtle_pose(msg, turtlename):
     t = geometry_msgs.msg.TransformStamped()
 
     t.header.stamp = rospy.Time.now()
-    world_frame_id = rospy.get_param('~world_frame_id', 'sea')
-    t.header.frame_id = world_frame_id
+    parent_frame_id = rospy.get_param('~world_frame_id', 'sea')
     turtle_frame_id = rospy.get_param('~turtle_frame_id', 'bob')
-    t.child_frame_id = turtlename
+    
+    t.header.frame_id = parent_frame_id
+    t.child_frame_id = turtle_frame_id
     t.transform.translation.x = msg.x
     t.transform.translation.y = msg.y
     t.transform.translation.z = 0.0
@@ -32,6 +33,7 @@ def handle_turtle_pose(msg, turtlename):
 if __name__ == '__main__':
     rospy.init_node('tf2_turtle_broadcaster')
     turtlename = rospy.get_param('~turtle')
+    
     rospy.Subscriber('/%s/pose' % turtlename,
                      turtlesim.msg.Pose,
                      handle_turtle_pose,
